@@ -9,3 +9,7 @@ mv no-auth-socksprox/danted.conf /etc/
 rm -R no-auth-socksprox
 systemctl restart danted
 systemctl enable danted
+echo "//////////////////////////"
+echo "The proxy IP and port is:"
+curl ifconfig.me && echo ":1080"
+echo "//////////////////////////"
