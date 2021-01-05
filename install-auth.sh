@@ -29,6 +29,6 @@ systemctl enable danted
 echo "//////////////////////////"
 echo "The proxy IP and port is:"
 curl ifconfig.me && echo ":"$portnumber
-echo "Username / Password:"
-echo "$username / $passwd"
+echo "Username:"$username
+echo "Password:"$passwd
 echo "//////////////////////////"
