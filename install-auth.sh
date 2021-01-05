@@ -27,6 +27,7 @@ rm -R quick-socksprox
 # Restart
 systemctl restart danted
 systemctl enable danted
+clear
 echo "//////////////////////////"
 echo "//////SETUP COMPLETE//////"
 echo "//////////////////////////"
