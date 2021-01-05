@@ -7,7 +7,7 @@ apt upgrade -y
 apt install dante-server
 # Configure
 cp /etc/danted.conf /etc/danted-org.conf
-mv no-auth-socksprox/danted-auth.conf /etc/danted.conf
+mv quick-socksprox/danted-auth.conf /etc/danted.conf
 # Admin
 ## Port
 echo "What port number should be used?:"
@@ -20,10 +20,9 @@ echo "Enter Password:"
 read passwd
 sudo useradd --shell /usr/sbin/nologin $username
 echo $username:$passwd | chpasswd
-sed -i "s/\bnewuser\b/${username}/g" /etc/danted.conf
-sed -i "s/\bnewpass\b/${passwd}/g" /etc/danted.conf
+#sed -i "s/\bnewuser\b/${username}/g" /etc/danted.conf (use for all-in-one-script)
 # Tidyup
-rm -R no-auth-socksprox
+rm -R quick-socksprox
 # Restart
 systemctl restart danted
 systemctl enable danted
