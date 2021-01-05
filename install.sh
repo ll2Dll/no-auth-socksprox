@@ -10,7 +10,7 @@ cp /etc/danted.conf /etc/danted-org.conf
 mv quick-socksprox/danted-noauth.conf /etc/danted.conf
 # Admin
 ## Port
-echo "What port number should be used?:"
+echo "What port number should be used? (>1024):"
 read portnumber
 sed -i "s/\bnewport\b/${portnumber}/g" /etc/danted.conf
 # Tidyup
@@ -19,6 +19,8 @@ rm -R quick-socksprox
 systemctl restart danted
 systemctl enable danted
 echo "//////////////////////////"
-echo "The proxy IP and port is:"
+echo "//////SETUP COMPLETE//////"
+echo "//////////////////////////"
+echo "The proxy IP and port number is:"
 curl ifconfig.me && echo ":"$portnumber
 echo "//////////////////////////"
