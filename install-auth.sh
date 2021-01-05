@@ -27,6 +27,8 @@ rm -R quick-socksprox
 systemctl restart danted
 systemctl enable danted
 echo "//////////////////////////"
+echo "//////SETUP COMPLETE//////"
+echo "//////////////////////////"
 echo "The proxy IP and port is:"
 curl ifconfig.me && echo ":"$portnumber
 echo "Username:"$username
