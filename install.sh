@@ -12,17 +12,15 @@ cp quick-socksprox/danted.conf /etc/
 # Admin
 ## Port
 echo "//////////////////////////"
-read -r -p "What port number should be used? (>1024):" portnumber
+read -r -p "What port number should be used? (>1024): " portnumber
 sed -i "s/\bnewport\b/${portnumber}/g" /etc/danted.conf
 ## Users Auth
-read -r -p "Do you want to use authentication? [Y/n]:" auth
+read -r -p "Do you want to use authentication? [Y/n]: " auth
 case $auth in
         [yY][eE][sS]|[yY])
         sed -i 's/setauth/username/' /etc/danted.conf
-	echo "Enter Username:"
-	read username
-	echo "Enter Password:"
-	read passwd
+	read -r -p "Enter Username: " username
+	read -r -p "Enter Password: " passwd
 	sudo useradd --shell /usr/sbin/nologin $username
 	echo $username:$passwd | chpasswd
         ;;
@@ -46,6 +44,6 @@ echo -n "Proxy: "
 curl ifconfig.me
 echo ""
 echo "Port:" $portnumber
-echo "Username:" $username
-echo "Password:" $passwd
+echo "Username: " $username
+echo "Password: " $passwd
 echo "//////////////////////////"
