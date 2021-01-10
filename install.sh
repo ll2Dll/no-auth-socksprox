@@ -7,13 +7,32 @@ apt upgrade -y
 apt install dante-server
 # Configure
 cp /etc/danted.conf /etc/danted-org.conf
-mv quick-socksprox/danted-noauth.conf /etc/danted.conf
+cp quick-socksprox/danted.conf /etc/
+
 # Admin
 ## Port
 echo "//////////////////////////"
-echo "What port number should be used? (>1024):"
-read portnumber
+read -r -p "What port number should be used? (>1024):" portnumber
 sed -i "s/\bnewport\b/${portnumber}/g" /etc/danted.conf
+## Users Auth
+read -r -p "Do you want to use authentication? [Y/n]:" auth
+case $auth in
+        [yY][eE][sS]|[yY])
+        sed -i 's/setauth/username/' /etc/danted.conf
+	echo "Enter Username:"
+	read username
+	echo "Enter Password:"
+	read passwd
+	sudo useradd --shell /usr/sbin/nologin $username
+	echo $username:$passwd | chpasswd
+        ;;
+        [nN][oO]|[nN])
+        sed -i 's/setauth/none/' /etc/danted.conf
+	username=N/A
+	passwd=N/A
+        ;;
+esac
+
 # Tidyup
 rm -R quick-socksprox
 # Restart
@@ -27,4 +46,6 @@ echo -n "Proxy: "
 curl ifconfig.me
 echo ""
 echo "Port:" $portnumber
+echo "Username:" $username
+echo "Password:" $passwd
 echo "//////////////////////////"
