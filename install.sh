@@ -44,6 +44,6 @@ echo -n "Proxy: "
 curl ifconfig.me
 echo ""
 echo "Port:" $portnumber
-echo "Username: " $username
-echo "Password: " $passwd
+echo "Username:" $username
+echo "Password:" $passwd
 echo "//////////////////////////"
